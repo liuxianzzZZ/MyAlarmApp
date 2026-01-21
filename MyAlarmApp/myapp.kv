@@ -1,0 +1,86 @@
+<TaskCard>:
+    orientation: "vertical"
+    size_hint_y: None
+    height: dp(120)
+    padding: dp(8)
+    BoxLayout:
+        size_hint_y: None
+        height: dp(30)
+        Label:
+            text: root.title
+            halign: "left"
+            valign: "middle"
+        Label:
+            text: root.due
+    Label:
+        text: root.note
+        size_hint_y: None
+        height: dp(40)
+    BoxLayout:
+        size_hint_y: None
+        height: dp(40)
+        Button:
+            text: "完成"
+            on_release: root.on_complete()
+        Button:
+            text: "删除"
+            on_release: root.on_delete()
+        Button:
+            text: "语音播报"
+            on_release: root.on_speak()
+
+Root:
+    orientation: "vertical"
+    padding: dp(10)
+    spacing: dp(10)
+    BoxLayout:
+        size_hint_y: None
+        height: dp(40)
+        TextInput:
+            id: title_input
+            hint_text: "任务标题"
+        TextInput:
+            id: note_input
+            hint_text: "备注"
+    BoxLayout:
+        size_hint_y: None
+        height: dp(40)
+        TextInput:
+            id: due_input
+            hint_text: "时间 yyyy-mm-dd HH:MM"
+        TextInput:
+            id: priority_input
+            text: "1"
+        TextInput:
+            id: repeat_input
+            text: "once"
+    Button:
+        size_hint_y: None
+        height: dp(44)
+        text: "添加任务"
+        on_release: root.add_task()
+    Label:
+        size_hint_y: None
+        height: dp(24)
+        text: "今天"
+    ScrollView:
+        BoxLayout:
+            id: today_list
+            size_hint_y: None
+            height: self.minimum_height
+            orientation: "vertical"
+            spacing: dp(6)
+            padding: dp(6)
+    Label:
+        size_hint_y: None
+        height: dp(24)
+        text: "未来"
+    ScrollView:
+        BoxLayout:
+            id: future_list
+            size_hint_y: None
+            height: self.minimum_height
+            orientation: "vertical"
+            spacing: dp(6)
+            padding: dp(6)
+            
