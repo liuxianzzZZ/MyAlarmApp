@@ -1,0 +1,23 @@
+name: Build Android APK
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Build with Buildozer
+        uses: ArtemSBulgakov/buildozer-action@v1
+        with:
+          workdir: MyAlarmApp
+          buildozer_version: stable
+          command: android debug
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: MyAlarmApp-apk
+          path: MyAlarmApp/bin/*.apk
